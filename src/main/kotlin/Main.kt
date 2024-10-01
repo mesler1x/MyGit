@@ -14,10 +14,7 @@ fun main(args: Array<String>) {
     when(args[0]) {
         "init" -> init()
         "cat-file" -> catFile(args)
-        else -> {
-            println("Unknown command: ${args[0]}")
-            exitProcess(1)
-        }
+        else -> fail(args[0])
     }
 }
 
@@ -44,7 +41,7 @@ fun catFile(args: Array<String>) {
     ).toFile()
 
     val decompressed = decompress(objectFile)
-    val stripped = decompressed.dropWhile { it != '\u0000' }.drop(1)
+    val stripped = decompressed.dropWhile { it != '\u0000' }.drop(1).trimEnd()
     println(stripped)
 }
 
