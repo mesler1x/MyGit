@@ -11,11 +11,13 @@ fun main(args: Array<String>) {
         exitProcess(1)
     }
 
-    if (args[0] == "init") {
-
-    } else {
-        println("Unknown command: ${args[0]}")
-        exitProcess(1)
+    when(args[0]) {
+        "init" -> init()
+        "cat-file" -> catFile(args)
+        else -> {
+            println("Unknown command: ${args[0]}")
+            exitProcess(1)
+        }
     }
 }
 
